@@ -34,5 +34,3 @@ Implement the following modules/ sub-modules using menu driven approach:
 Ø  Display the all Student name/ all University name for a given name substring entered by the user.
 
 ---------------------------
-
-:-)
