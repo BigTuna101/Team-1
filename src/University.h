@@ -7,8 +7,9 @@
 
 #include <string>
 #include <list>
-#include <cctype>
 #include <iostream>
+
+#include "Utility.h"
 
 using namespace std;
 
@@ -20,8 +21,7 @@ public:
     string location;
     string year_of_start;    
 
-    //do we need a constructor
-    // University() {   }
+    // University() {   }   //TDOD: add a meaningfull constructor
 
     //takes the indiviual University's data
     void inputData()
@@ -41,8 +41,6 @@ public:
         cout << endl;
     }
 
-    void capitalize(string &str);
-
     //takes the indiviual University's data
     void displayData()
     {
@@ -56,15 +54,7 @@ public:
     
 };
 
-void University::capitalize(string &str)
-{
-    for (int i = 0; i != str.size(); ++i)
-    {
-        str[i] = toupper(str[i]);
-    }
-}
-
-//add functions to update name and location and year_of_start
+//TODO: add functions to modify data
 
 /////////////////////////////
 
@@ -96,9 +86,6 @@ int UniversityList::totalUniversities()
 {
     return Ulist.size();
 }
-
-
-
 
 
 
