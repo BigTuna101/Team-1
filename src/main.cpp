@@ -1,14 +1,3 @@
-//for Sleep() function
-//also for additional GUI later on
-//Need to add this in a platform header
-//////////////////////////
-#ifdef _WIN32
-    #include <Windows.h>
-#else
-    #include <unistd.h>     //also need to implement usleep()    //ask Sir
-#endif
-//////////////////////////
-
 #include <iostream>
 #include <iomanip>
 #include <list>
@@ -19,12 +8,15 @@
 
 using namespace std;
 
-int choice; //stores the choice 
+//////////////////////////
+
+int choice;     //stores the choice 
 char enter;     //character for input of ENTER
 
-//global UniversityList 
-//we can also make the UniversityList class of static members
+
+//global UniversityList, BranchList
 UniversityList obj_UnList;
+BranchList obj_BrList;
 
 
 //GUI Functions
@@ -39,6 +31,11 @@ void branchScreen();
 void addUniversity();
 void viewAllUniversity();
 
+//Branch Functions
+void addBranch();
+void viewAllBranch();
+
+
 int main()
 {
     //login()
@@ -49,30 +46,19 @@ int main()
 }
 
 
-/*
-______DISPLAY GUI________
-*/
-
-//to clear the console screen
-//cls -- windows
-//clear -- linux
-inline void clrscr()
-{
-    system("CLS || CLEAR");
-}
 
 void displayHeader()
 {
     cout << "\n\n";
     cout << setw(120) << setfill('-') << "-";
     cout << "\n\n";
-    cout << setw(75) << setfill(' ') << "Welcome to the University-Student Database";
+    cout << setw(75) << setfill(' ') << "Welcome to the University Database";
     cout << "\n\n";
     cout << setw(120) << setfill('-') << "-";
     cout << endl;
 }
 
-//maybe we can have login/signup window for admins 
+//TODO: maybe later we can have login/signup screen for admins / students
 // void login() {   }
 
 void mainScreen()
@@ -97,7 +83,7 @@ void mainScreen()
         case 1:
         {
             cout << "\n\nTODO. NOT IMPLEMENTED.";
-            Sleep(700);
+            SleepFor(700);
             mainScreen();
 
             //studentScreen();
@@ -113,11 +99,9 @@ void mainScreen()
 
         case 3:
         {
-            cout << "\n\nTODO. NOT IMPLEMENTED.";
-            Sleep(700);
+            branchScreen();
             mainScreen();
 
-            //branchScreen();
         }break;
 
         case 0:
@@ -133,7 +117,7 @@ void mainScreen()
             //in case of a wrong input
 
             cout << "\t\t Wrong Input. Please Enter Again.";
-            Sleep(700);
+            SleepFor(700);
             mainScreen();
             
         }break;
@@ -187,7 +171,7 @@ void universityScreen()
             //in case of a wrong input
 
             cout << "\t\t Wrong Input. Please Enter Again.";
-            Sleep(700);
+            SleepFor(700);
             universityScreen();
 
         }break;
@@ -214,7 +198,7 @@ void addUniversity()
     {
         if(it->university_ID == un_temp.university_ID)
         {
-            cout << "\t\t The ID entered already exists.\n";
+            cout << "\t\t The University ID entered already exists.\n";
             cout << "\t\t Press 1 to Re-Enter the Correct Details.\n";
             cout << "\t\t Press 0 to Return back to Previous Menu.\n";
 
@@ -230,7 +214,7 @@ void addUniversity()
                         addUniversity();
                     }break;
 
-                    case 2:
+                    case 0:
                     {
                         clrscr();
                         universityScreen();
@@ -241,7 +225,7 @@ void addUniversity()
                     {
                         //in case of wrong input
                         cout << "\t\t Wrong Input. Please Enter Again.";
-                        Sleep(500);
+                        SleepFor(500);
 
                     }break;
                 }
@@ -288,11 +272,217 @@ void viewAllUniversity()
 
 }
 
-//TODO
+
 void branchScreen()
 {
+    clrscr();
+    displayHeader();
+    cout << "\n";
+
+    cout << "\t\t UNIVERSITY-BRANCH PORTAL";
+    cout << "\n\t\t ------------------------";
+    
+    cout << "\n\n";
+    cout << "\t\t 1. Add a Branch for a University in the Database \n";
+    cout << "\t\t 2. View All Current Universities with their Branches in the Database \n"; 
+    cout << "\n\t\t 0. Return to previous menu\n";
+
+    cout << "\n\n";
+    cout << "\t\t Enter Choice: ";
+    cin >> choice;
+
+    switch(choice)
+    {
+        case 1:
+        {
+            addBranch();
+            branchScreen();
+
+        }break;
+
+        case 2:
+        {
+            viewAllBranch();
+            branchScreen();   
+
+        }break;
+
+        case 0:
+        {
+            return;
+
+        }break;
+
+        default:
+        {
+            //in case of a wrong input
+
+            cout << "\t\t Wrong Input. Please Enter Again.";
+            SleepFor(700);
+            branchScreen();
+
+        }break;
+    }  
+}
+
+//Adds a Branch for a University
+void addBranch()
+{
+    clrscr();
+    displayHeader();
+
+    cout << "\t\t UNIVERSITY-BRANCH PORTAL";
+    cout << "\n\t\t ------------------------";
+
+    cout << "\n\t\t Enter the Branch details:";
+    cout << "\n\n";
+
+    Branch br_temp;
+    br_temp.inputData();
+    
+    bool flag = false;  //we need this flag to check if university exists or not
+
+    //first we check if the University ID exists or not.
+    //if not then flag = false
+    for (auto it = obj_UnList.Ulist.begin(); it != obj_UnList.Ulist.end(); ++it)
+    {
+        if(it->university_ID == br_temp.university_ID)
+        {
+            flag = true;
+            break;
+        }
+    }
+
+    if(flag == false)
+    {
+        cout << "\t\t The University ID entered does not exist in the database.\n";
+        cout << "\t\t Press 1 to Re-Enter the Correct Details.\n";
+        cout << "\t\t Press 0 to Return back to Previous Menu.\n";
+
+        while(1)
+        {
+            cout << "\n\t\t Enter Choice: ";
+            cin >> choice;
+            switch(choice)
+            {
+                case 1:
+                {
+                    clrscr();
+                    addBranch();
+                }break;
+
+                case 0:
+                {
+                    clrscr();
+                    branchScreen();
+                }break;
+
+                
+                default:
+                {
+                    //in case of wrong input
+                    cout << "\t\t Wrong Input. Please Enter Again.  ";
+                    SleepFor(500);
+
+                }break;
+            }
+        }
+    }
+
+
+    //check uniqueness of the ID
+    for (auto it = obj_BrList.Blist.begin(); it != obj_BrList.Blist.end(); ++it)
+    {
+        if(it->branch_ID == br_temp.branch_ID)
+        {
+            cout << "\t\t The Branch ID is not unique. It already exists.\n";
+            cout << "\t\t Press 1 to Re-Enter the Correct Details.\n";
+            cout << "\t\t Press 0 to Return back to Previous Menu.\n";
+
+            while(1)
+            {
+                cout << "\n\t\t Enter Choice: ";
+                cin >> choice;
+                switch(choice)
+                {
+                    case 1:
+                    {
+                        clrscr();
+                        addBranch();
+                    }break;
+
+                    case 0:
+                    {
+                        clrscr();
+                        branchScreen();
+                    }break;
+
+                    
+                    default:
+                    {
+                        //in case of wrong input
+                        cout << "\t\t Wrong Input. Please Enter Again.";
+                        SleepFor(500);
+
+                    }break;
+                }
+            }
+        }
+    }
+
+    //we push the branch in a ordered manner such that all branches of a particular University grouped sequentially
+
+    //this checks if the branch of a University ID exists
+    //then it inserts it in front of the current iterator 
+    auto it = obj_BrList.Blist.begin();
+    while(it != obj_BrList.Blist.end())
+    {
+        if (it->university_ID == br_temp.university_ID)
+        {
+            obj_BrList.Blist.insert(it, br_temp);
+            break;
+        }
+        ++it;
+    }
+
+    //else simply appends the branch to the end of the list
+    if(it == obj_BrList.Blist.end())
+        obj_BrList.Blist.push_back(br_temp);
+
+    cout << "\n\t\t Branch Successfully added to the University.\n";
+    cout <<"\t\t Press Enter to return back.";
+    cin.get(enter);
+}
+
+//View all the Universities with their Branches 
+void viewAllBranch()
+{
+    clrscr();
+    displayHeader();
+
+    cout << "\t\t UNIVERSITY-BRANCH PORTAL";
+    cout << "\n\t\t -----------------------";
+    
+    cout << "\n";
+    cout << setw(79) << setfill('-') << "-";
+    cout << "\n";
+
+    cout << "\t All Universities with Branches Currently in the Database: " << endl;
+    cout << setw(79) << setfill('-') << "-";
+    cout << "\n";
+
+    obj_BrList.displayList();
+
+    cout << "\n";
+    cout << setw(79) << setfill('-') << "-";
+    cout << "\n\n";
+    
+    cout << "\t Press Enter to return back.";
+    cin.ignore();
+    cin.get(enter);   
 
 }
+
 
 //TODO
 void studentScreen()

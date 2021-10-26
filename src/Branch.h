@@ -7,8 +7,9 @@
 
 #include <string>
 #include <list>
-#include <cctype>
 #include <iostream>
+
+#include "Utility.h"
 
 using namespace std;
 
@@ -19,7 +20,6 @@ public:
     std::string branch_ID;      //unique
     std::string university_ID;  //unique
 
-    //do we need a constructor
     // Branch() {   }
 
 
@@ -38,29 +38,20 @@ public:
         cout << endl;
     }
 
-    void capitalize(string &str);
-
     //displays the individual Branch's data
     void displayData()
     {
-        cout << "Name: " << name << "\n";
-        cout << "University ID: " << university_ID << "\n";
-        cout << "Branch ID: " << branch_ID;
+        cout << "|--- Branch Name: " << name << "\n";
+        cout << "|--- Branch ID: " << branch_ID;
 
         cout << endl;
     }
     
 };
 
-void Branch::capitalize(string &str)
-{
-    for (int i = 0; i != str.size(); ++i)
-    {
-        str[i] = toupper(str[i]);
-    }
-}
+//TODO: add functions to modify data
 
-////////////////////////////
+//////////////////////////////
 
 class BranchList
 {
@@ -68,24 +59,41 @@ public:
     std::list<Branch> Blist;
     
     void displayList();
-    int totalBranches();
+    //int totalBranches();  //TODO: find total branch per Univerisity
 };
 
 void BranchList::displayList()
 {
+    string UnID;
     for (auto it = Blist.begin(); it != Blist.end(); ++it)
     {
         cout << "\n";
+        
+        if (UnID != it->university_ID)
+        { 
+            if (UnID != "")   
+            {
+                cout << setw(79) << setfill('-') << "-";
+                cout << "\n\n";
+            }
+
+            UnID = it->university_ID;
+            cout << " " << UnID << " ";
+            cout << "\n|\n";
+
+        }
         it->displayData();
-        cout << setw(79) << setfill('-') << "-";
-        cout << "\n\n";
+        
+        //TODO: display the total branch per university
+        //TODO: instead of displaying only the University ID we can display the University Name (ID) and then branch names 
+
     }
 
 }
 
-int BranchList::totalBranches()
-{
-    return Blist.size();
-}
+
+///////////////////////////////
+
+
 
 #endif

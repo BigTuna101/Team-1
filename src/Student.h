@@ -7,17 +7,18 @@
 
 #include <string>
 #include <list>
-#include <cctype>
 #include <iostream>
+
+#include "Utility.h"
 
 using namespace std;
 
 class Student
 {
 public:
-    std::string roll_no;      //unique
-    std::string name;
-    std::string branch_ID;    //unique
+    string roll_no;      //unique
+    string name;
+    string branch_ID;    //unique
     float CGPA;
 
     //Student()   { }
@@ -40,8 +41,6 @@ public:
         cout << endl;
     }
 
-    void capitalize(string &str);
-
     //displays the individual student's data
     void displayData()
     {
@@ -55,17 +54,9 @@ public:
     
 };
 
-void Student::capitalize(string &str)
-{
-    for (int i = 0; i != str.size(); ++i)
-    {
-        str[i] = toupper(str[i]);
-    }
-}
+//TODO: add functions to modify data
 
-//add functions to update name and cgpa
-
-////////////////////////////
+//////////////////////////////////////
 
 class StudentList
 {
