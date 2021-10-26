@@ -78,7 +78,9 @@ void mainScreen()
         case 1:
         {
             cout << "\n\nTODO. NOT IMPLEMENTED.";
-            SleepFor(700);
+            cout << "Press Enter to return back.";
+            cin.ignore(1000, '\n');
+            cin.get(enter);  
             mainScreen();
 
             //studentScreen();
@@ -112,8 +114,9 @@ void mainScreen()
         {
             //in case of a wrong input
 
-            cout << "\t\t Wrong Input. Please Enter Again.";
-            SleepFor(700);
+            cout << "\t\t Wrong Input. Press Enter to return back.";
+            cin.ignore(1000, '\n');
+            cin.get(enter);  
             mainScreen();
             
         }break;
@@ -135,7 +138,7 @@ void universityScreen()
     cout << "\t\t 1. Add a University to the Database \n";
     cout << "\t\t 2. View All Current Universities in the Database \n"; 
     cout << "\n\t\t 0. Return to previous menu\n";
-    cout << "\t\t -1. Exit!\n";
+    cout << "\t\t-1. Exit!\n";
 
     cout << "\n\n";
     cout << "\t\t Enter Choice: ";
@@ -172,8 +175,9 @@ void universityScreen()
         {
             //in case of a wrong input
 
-            cout << "\t\t Wrong Input. Please Enter Again.";
-            SleepFor(700);
+            cout << "\t\t Wrong Input. Press Enter to return back.";
+            cin.ignore(1000, '\n');
+            cin.get(enter);  
             universityScreen();
 
         }break;
@@ -227,7 +231,6 @@ void addUniversity()
                     {
                         //in case of wrong input
                         cout << "\t\t Wrong Input. Please Enter Again.";
-                        SleepFor(500);
 
                     }break;
                 }
@@ -239,6 +242,7 @@ void addUniversity()
 
     cout << "\n\t\t University Successfully added to the Database.\n";
     cout <<"\t\t Press Enter to return back.";
+    cin.ignore(1000, '\n');
     cin.get(enter);
 
 
@@ -269,7 +273,7 @@ void viewAllUniversity()
     cout << "\t Total Universites in the Database: " << obj_UnList.totalUniversities();
     
     cout << "\n\n\t Press Enter to return back.";
-    cin.ignore();
+    cin.ignore(1000, '\n');
     cin.get(enter);   
 
 }
@@ -288,7 +292,7 @@ void branchScreen()
     cout << "\t\t 1. Add a Branch for a University in the Database \n";
     cout << "\t\t 2. View All Current Universities with their Branches in the Database \n"; 
     cout << "\n\t\t 0. Return to previous menu\n";
-    cout << "\t\t -1. Exit!\n";
+    cout << "\t\t-1. Exit!\n";
 
     cout << "\n\n";
     cout << "\t\t Enter Choice: ";
@@ -325,8 +329,9 @@ void branchScreen()
         {
             //in case of a wrong input
 
-            cout << "\t\t Wrong Input. Please Enter Again.";
-            SleepFor(700);
+            cout << "\t\t Wrong Input. Press Enter to return back.";
+            cin.ignore(1000, '\n');
+            cin.get(enter);  
             branchScreen();
 
         }break;
@@ -390,7 +395,6 @@ void addBranch()
                 {
                     //in case of wrong input
                     cout << "\t\t Wrong Input. Please Enter Again.  ";
-                    SleepFor(500);
 
                 }break;
             }
@@ -430,7 +434,6 @@ void addBranch()
                     {
                         //in case of wrong input
                         cout << "\t\t Wrong Input. Please Enter Again.";
-                        SleepFor(500);
 
                     }break;
                 }
@@ -489,7 +492,7 @@ void viewAllBranch()
     cout << "\n\n";
     
     cout << "\t Press Enter to return back.";
-    cin.ignore();
+    cin.ignore(1000, '\n');
     cin.get(enter);   
 
 }
