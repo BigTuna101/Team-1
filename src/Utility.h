@@ -13,8 +13,7 @@
 
 #include <string>
 #include <cctype>
-#include <chrono>
-#include <thread>
+#include <cstdlib>
 
 
 //capitalize the Name
@@ -34,10 +33,5 @@ inline void clrscr()
     system("CLS || CLEAR");
 }
 
-//to pause the screen for ms milliseconds
-inline void SleepFor(int ms)
-{
-    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-}
 
 #endif
