@@ -8,8 +8,6 @@
 
 using namespace std;
 
-//////////////////////////
-
 int choice;     //stores the choice 
 char enter;     //character for input of ENTER
 
@@ -44,7 +42,6 @@ int main()
 
     return 0;
 }
-
 
 
 void displayHeader()
