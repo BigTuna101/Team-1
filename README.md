@@ -1,36 +1,22 @@
 # Question 1
 
----------------------------
-A-1: Create three database using header linked
+### Question Details:-
 
-              Student (Roll No, Name, Branch ID, CGPA)
+* [Question](Q1.md)  
 
-              University (University ID, University Name, University Location, Year of start)
+**DEADLINE : 30th November 2021**
 
-              Branch (Branch ID, University ID, Branch Name)
+--------------------------------
 
-Implement the following modules/ sub-modules using menu driven approach:
+### FUNCTIONS AND FILES:-
 
-Ø  Keep the Roll No, University ID and Branch ID Unique (Duplicated entry should not be allowed and prompted)
+* **TODO**
 
-Ø  Students can take a University ID/ Branch ID only if it is available in the University/ Branch database.
+-----------------------------------
 
-Ø  Student Name, University Name and Branch Name should all be in Capital Letters. (If the user has not entered accordingly, then the program must convert it into Capital Letters and store.)
+### HOW TO RUN:-
 
-Ø  Display the entire  student list/ University list/  Branch List
+* Download the Code (Go to the `Code` then Select `Download as Zip`).
+* Open the `src` and run the `main.cpp`.
 
-Ø  Delete all students whose CGPA<6.0 and store them in another list. They will come back to original student list if their CGPA>=6.0(Update function)
-
-Ø  Display the list of students reading in KIIT University
-
-Ø  ADD/ MODIFY/DELETE/UPDATE using key values in any of the databases as per requirement.
-
-Ø  Display the student details who are reading at KIIT University with branch CSE.
-
-Ø  Display the list of Branches available in any given University
-
-Ø  Display the University details in ascending order of their year of starting
-
-Ø  Display the all Student name/ all University name for a given name substring entered by the user.
-
----------------------------
+----------------------------------
