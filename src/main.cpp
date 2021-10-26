@@ -11,11 +11,9 @@ using namespace std;
 int choice;     //stores the choice 
 char enter;     //character for input of ENTER
 
-
 //global UniversityList, BranchList
 UniversityList obj_UnList;
 BranchList obj_BrList;
-
 
 //GUI Functions
 inline void clrscr();
@@ -105,7 +103,8 @@ void mainScreen()
         {
             //add a logout use
             //right now 0 exits the program
-            return;
+
+            exit(0);
 
         }break;
 
@@ -136,6 +135,7 @@ void universityScreen()
     cout << "\t\t 1. Add a University to the Database \n";
     cout << "\t\t 2. View All Current Universities in the Database \n"; 
     cout << "\n\t\t 0. Return to previous menu\n";
+    cout << "\t\t -1. Exit!\n";
 
     cout << "\n\n";
     cout << "\t\t Enter Choice: ";
@@ -159,8 +159,13 @@ void universityScreen()
 
         case 0:
         {
-            return;
+            mainScreen();
 
+        }break;
+
+        case -1:
+        {
+            exit(0);
         }break;
 
         default:
@@ -283,6 +288,7 @@ void branchScreen()
     cout << "\t\t 1. Add a Branch for a University in the Database \n";
     cout << "\t\t 2. View All Current Universities with their Branches in the Database \n"; 
     cout << "\n\t\t 0. Return to previous menu\n";
+    cout << "\t\t -1. Exit!\n";
 
     cout << "\n\n";
     cout << "\t\t Enter Choice: ";
@@ -306,8 +312,13 @@ void branchScreen()
 
         case 0:
         {
-            return;
+            mainScreen();
 
+        }break;
+
+        case -1:
+        {
+            exit(0);
         }break;
 
         default:
@@ -427,6 +438,7 @@ void addBranch()
         }
     }
 
+
     //we push the branch in a ordered manner such that all branches of a particular University grouped sequentially
 
     //this checks if the branch of a University ID exists
@@ -445,6 +457,8 @@ void addBranch()
     //else simply appends the branch to the end of the list
     if(it == obj_BrList.Blist.end())
         obj_BrList.Blist.push_back(br_temp);
+
+
 
     cout << "\n\t\t Branch Successfully added to the University.\n";
     cout <<"\t\t Press Enter to return back.";
