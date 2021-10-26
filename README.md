@@ -10,7 +10,7 @@
 
 ### FUNCTIONS AND FILES:-
 
-* **TODO**
+* [Functions](Functions-Files.md)
 
 -----------------------------------
 
