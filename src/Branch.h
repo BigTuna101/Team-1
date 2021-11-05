@@ -8,8 +8,8 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include <cctype>
 
-#include "Utility.h"
 
 using namespace std;
 
@@ -27,7 +27,7 @@ public:
     void inputData()
     {
         cout << "\t\t Enter Name: ";
-        cin.ignore();
+        cin.ignore(1000, '\n');
         getline(cin, name);
         cout << "\t\t Enter Branch ID: ";
         getline(cin, branch_ID);
@@ -37,6 +37,8 @@ public:
         capitalize(name);
         cout << endl;
     }
+
+    void capitalize(std::string &str);
 
     //displays the individual Branch's data
     void displayData()
@@ -50,6 +52,14 @@ public:
 };
 
 //TODO: add functions to modify data
+
+void Branch::capitalize(std::string &str)
+{
+    for (unsigned int i = 0; i != str.size(); ++i)
+    {
+        str[i] = toupper(str[i]);
+    }
+}
 
 //////////////////////////////
 

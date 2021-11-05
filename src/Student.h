@@ -8,8 +8,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-
-#include "Utility.h"
+#include <cctype>
 
 using namespace std;
 
@@ -27,7 +26,7 @@ public:
     void inputData()
     {
         cout << "\t\t Enter Name: ";
-        cin.ignore();
+        cin.ignore(1000, '\n');
         getline(cin, name);
         cout << "\t\t Enter Roll No: ";
         getline(cin, roll_no);
@@ -41,20 +40,28 @@ public:
         cout << endl;
     }
 
+    void capitalize(std::string &str);
+  
     //displays the individual student's data
     void displayData()
     {
-        cout << "Name: " << name << "\n";
-        cout << "Roll No: " << roll_no << "\n";
-        cout << "Branch ID: " << branch_ID << "\n";
-        cout << "CGPA: " << CGPA;
+        cout << "\tName: " << name << "\n";
+        cout << "\tRoll No: " << roll_no << "\n";
+        cout << "\tBranch ID: " << branch_ID << "\n";
+        cout << "\tCGPA: " << CGPA;
 
         cout << endl;
     }
     
 };
 
-//TODO: add functions to modify data
+void Student::capitalize(std::string &str)
+{
+    for (unsigned int i = 0; i != str.size(); ++i)
+    {
+        str[i] = toupper(str[i]);
+    }
+}
 
 //////////////////////////////////////
 
@@ -65,18 +72,40 @@ public:
 
     void displayList();
     int totalStudents();
+    void updateStudent();
 };
 
+void StudentList::updateStudent()
+{
+
+}
 void StudentList::displayList()
 {
+    string BrID;
     for (auto it = Slist.begin(); it != Slist.end(); ++it)
     {
         cout << "\n";
-        it->displayData();
-        cout << setw(79) << setfill('-') << "-";
-        cout << "\n\n";
-    }
+        
+        if (BrID != it->branch_ID)
+        { 
+            if (BrID != "")   
+            {
+                cout << setw(79) << setfill('-') << "-";
+                cout << "\n\n";
+            }
 
+            BrID = it->branch_ID;
+            cout << " " << BrID << "\n";
+            cout << setw(20) << setfill('*') << "*";
+            cout << "\n";
+
+        }
+        it->displayData();
+        
+        //TODO: instead of displaying only the branch ID we can display the University Name (ID) and then branch names then 
+        //the Student
+
+    }
 }
 
 int StudentList::totalStudents()

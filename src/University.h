@@ -8,8 +8,7 @@
 #include <string>
 #include <list>
 #include <iostream>
-
-#include "Utility.h"
+#include <cctype>
 
 using namespace std;
 
@@ -27,7 +26,7 @@ public:
     void inputData()
     { 
         cout << "\t\t Enter Name: ";
-        cin.ignore();
+        cin.ignore(1000, '\n');
         getline(cin, name);
         cout << "\t\t Enter Location: ";
         getline(cin, location);
@@ -41,20 +40,28 @@ public:
         cout << endl;
     }
 
+    void capitalize(std::string &str);
+
     //takes the indiviual University's data
     void displayData()
     {
-        cout << "Name: " << name << "\n";
-        cout << "Location: " << location << "\n";
-        cout << "Year of Start: " << year_of_start << "\n";
-        cout << "University ID: " << university_ID;
+        cout << "\tName: " << name << "\n";
+        cout << "\tLocation: " << location << "\n";
+        cout << "\tYear of Start: " << year_of_start << "\n";
+        cout << "\tUniversity ID: " << university_ID;
 
         cout << endl;
     }
     
 };
 
-//TODO: add functions to modify data
+void University::capitalize(std::string &str)
+{
+    for (unsigned int i = 0; i != str.size(); ++i)
+    {
+        str[i] = toupper(str[i]);
+    }
+}
 
 /////////////////////////////
 
@@ -66,9 +73,14 @@ public:
     //Display the entire University list
     void displayList();
     int totalUniversities();
+    void updateUniversity();
 
 };
 
+void UniversityList::updateUniversity()
+{
+
+}
 
 void UniversityList::displayList()
 {
@@ -86,7 +98,5 @@ int UniversityList::totalUniversities()
 {
     return Ulist.size();
 }
-
-
 
 #endif
